@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/countries.scss";
 import Filter from "./Filter";
 
@@ -42,42 +43,44 @@ export default function Countries() {
       </section>
       <ul className="countries">
         {countries.map((country) => (
-          <li className="liste" key={country.name.common}>
-            {" "}
-            <div className="liste__box">
-              <div className="liste__box__wrapper">
-                <img
-                  className="liste__box__wrapper__img"
-                  src={country.flags.svg}
-                  alt="Flag's Country"
-                />
-              </div>
+          <Link to={country.name.common} key={country.name.common}>
+            <li className="liste" key={country.name.common}>
+              {" "}
+              <div className="liste__box">
+                <div className="liste__box__wrapper">
+                  <img
+                    className="liste__box__wrapper__img"
+                    src={country.flags.svg}
+                    alt="Flag's Country"
+                  />
+                </div>
 
-              <div className="liste__box__description">
-                <h2 className="liste__box__description__title">
-                  {country.name.common}
-                </h2>
-                <p className="liste__box__description__texte">
-                  <span className="liste__box__description__texte--bolder">
-                    Population :{" "}
-                  </span>{" "}
-                  {country.population.toLocaleString()}
-                </p>
-                <p className="liste__box__description__texte">
-                  <span className="liste__box__description__texte--bolder">
-                    Region :{" "}
-                  </span>{" "}
-                  {country.continents}
-                </p>
-                <p className="liste__box__description__texte">
-                  <span className="liste__box__description__texte--bolder">
-                    Capital :{" "}
-                  </span>{" "}
-                  {country.capital}
-                </p>
+                <div className="liste__box__description">
+                  <h2 className="liste__box__description__title">
+                    {country.name.common}
+                  </h2>
+                  <p className="liste__box__description__texte">
+                    <span className="liste__box__description__texte--bolder">
+                      Population :{" "}
+                    </span>{" "}
+                    {country.population.toLocaleString()}
+                  </p>
+                  <p className="liste__box__description__texte">
+                    <span className="liste__box__description__texte--bolder">
+                      Region :{" "}
+                    </span>{" "}
+                    {country.continents}
+                  </p>
+                  <p className="liste__box__description__texte">
+                    <span className="liste__box__description__texte--bolder">
+                      Capital :{" "}
+                    </span>{" "}
+                    {country.capital}
+                  </p>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          </Link>
         ))}
       </ul>
     </>
