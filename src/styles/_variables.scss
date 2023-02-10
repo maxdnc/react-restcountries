@@ -1,0 +1,46 @@
+// dark mode //
+$Dark-Element: hsl(209, 23%, 22%); //(Dark blue)
+$Dark-Background: hsl(207, 26%, 17%); // (Very-Dark-Blue-mode
+$Dark-Text: hsl(0, 0%, 100%); // white
+
+// light mode //
+$Light-Elements: hsl(0, 0%, 100%); // White
+$Light-Text: hsl(200, 15%, 8%); // Very-Dark-Blue
+$Light-Input: hsl(0, 0%, 52%); // Dark-Gray
+$Light-Background: hsl(0, 0%, 98%); // (Very-Light-Gray)
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #{$Dark-Background};
+    --txt: #{$Dark-Text};
+    --elm: #{$Dark-Element};
+    --inp: #{$Dark-Text};
+    color-scheme: dark;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #{$Light-Background};
+    --txt: #{$Light-Text};
+    --elm: #{$Light-Elements};
+    --inp: #{$Light-Input};
+    color-scheme: light;
+  }
+}
+
+:root[color-scheme="dark"] {
+  --bg: #{$Dark-Background};
+  --txt: #{$Dark-Text};
+  --elm: #{$Dark-Element};
+  --inp: #{$Dark-Text};
+  color-scheme: dark;
+}
+
+:root[color-scheme="light"] {
+  --bg: #{$Light-Background};
+  --txt: #{$Light-Text};
+  --elm: #{$Light-Elements};
+  --inp: #{$Light-Input};
+  color-scheme: light;
+}
