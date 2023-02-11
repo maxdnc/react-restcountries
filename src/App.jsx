@@ -8,12 +8,19 @@ import {
 import "./styles/App.scss";
 import MainLayout from "./components/MainLayout";
 import Countries from "./components/Countries";
+import CountryDetails from "./components/CountryDetails";
+import { countryDetailsLoader } from "./components/CountryDetails";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/react-restcountries//" element={<MainLayout />}>
+      <Route path="/react-restcountries/" element={<MainLayout />}>
         <Route index element={<Countries />} />
+        <Route
+          path=":name"
+          element={<CountryDetails />}
+          loader={countryDetailsLoader}
+        />
       </Route>
     )
   );
