@@ -25,6 +25,7 @@
     font-weight: 600;
     font-size: 0.875rem;
     transition: transform 0.1s ease-out;
+    overflow: hidden;
 
     &:hover {
       transform: scale(1.1);

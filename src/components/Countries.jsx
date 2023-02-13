@@ -2,35 +2,53 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/countries.scss";
 import Filter from "./Filter";
-
+import Loading from "./Loading";
 import Search from "./Search";
 
 export default function Countries() {
   const [countries, setCountries] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const onSubmit = async (event) => {
-    const res = await fetch(`https://restcountries.com/v3.1/name/${event}`);
-    const data = await res.json();
-    setCountries(data);
+    try {
+      const res = await fetch(`https://restcountries.com/v3.1/name/${event}`);
+      const data = await res.json();
+      setCountries(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onClick = async (event) => {
-    const res = await fetch("https://restcountries.com/v3.1/region/" + event);
-    const data = await res.json();
-    setCountries(data);
+    try {
+      const res = await fetch("https://restcountries.com/v3.1/region/" + event);
+      const data = await res.json();
+      setCountries(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const clickAll = async () => {
-    const res = await fetch("https://restcountries.com/v3.1/all");
-    const data = await res.json();
-    setCountries(data);
+    try {
+      const res = await fetch("https://restcountries.com/v3.1/all");
+      const data = await res.json();
+      setCountries(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     const getCountries = async () => {
-      const res = await fetch("https://restcountries.com/v3.1/all");
-      const data = await res.json();
-      setCountries(data);
+      try {
+        const res = await fetch("https://restcountries.com/v3.1/all");
+        const data = await res.json();
+        setCountries(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getCountries();
   }, []);
@@ -42,6 +60,11 @@ export default function Countries() {
         <Filter onClick={onClick} clickAll={clickAll} />
       </section>
       <ul className="countries">
+        {isLoading && (
+          <div>
+            <Loading />
+          </div>
+        )}
         {countries.map((country) => (
           <Link to={country.name.common} key={country.name.common}>
             <li className="liste" key={country.name.common}>

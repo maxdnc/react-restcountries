@@ -31,7 +31,7 @@ export default function Search({ onSubmit }) {
 
         <button
           id="searched"
-          aria-labelledby="Search"
+          aria-label="submit search country"
           className="search__wrapper__button"
         >
           <i className="fa-solid fa-magnifying-glass"></i>

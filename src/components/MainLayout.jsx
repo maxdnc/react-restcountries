@@ -22,7 +22,6 @@ export default function MainLayout() {
           aria-label={`Change Theme to ${
             theme === "light" ? "dark" : "light"
           } mode `}
-          role="switch"
           onClick={() => {
             setTheme(theme === "light" ? "dark" : "light");
           }}
@@ -30,7 +29,7 @@ export default function MainLayout() {
           {theme === "light" ? (
             <i className="fa-solid fa-moon"></i>
           ) : (
-            <i className="fa-solid fa-sun"></i>
+            <i className="fa-solid fa-sun active"></i>
           )}
           {theme === "light" ? "Dark" : "Light"} Mode
         </button>
