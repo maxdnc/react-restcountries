@@ -1,3 +1,5 @@
+import "../styles/countrydetails.scss";
+
 import { useLoaderData, useNavigate } from "react-router";
 
 export default function CountryDetails() {
@@ -17,19 +19,19 @@ export default function CountryDetails() {
         Back
       </button>
       {country.map((item) => (
-        <article key={item.population} className="country-details">
-          <div className="wrapper-details-flag">
+        <article key={item.population} className="country">
+          <div className="country__wrapper-img">
             <img
-              className="details-flag"
+              className="country__wrapper-img__flag"
               src={item.flags.svg}
               alt={item.flags.alt}
             />
           </div>
 
-          <div className="wrapper-description">
-            <h2>{item.name.common}</h2>
-            <div className="wrapper-listes">
-              <ul className="first-part">
+          <div className="country__description">
+            <h2 className="country__description__title">{item.name.common}</h2>
+            <div className="country__description__wrapper">
+              <ul className="country__description__wrapper__first-details">
                 <li>
                   <span className="bolder-text">Official Name :</span>{" "}
                   {item.name.official}
@@ -50,7 +52,7 @@ export default function CountryDetails() {
                   {item.capital[0]}
                 </li>
               </ul>
-              <ul className="second-part">
+              <ul className="country__description__wrapper__second-details">
                 <li>
                   <span className="bolder-text">Currencies :</span>{" "}
                   {currencies(item)} {symbolCurrencies(item)}
@@ -62,11 +64,14 @@ export default function CountryDetails() {
               </ul>
             </div>
             {item.borders && (
-              <div className="border-item">
-                <h3> Border Countries : </h3>
-                <ul className="third-part">
+              <div className="country__borders">
+                <h3 className="country__borders__title">
+                  {" "}
+                  Border Countries :{" "}
+                </h3>
+                <ul className="country__borders__liste">
                   {item.borders.map((border, index) => (
-                    <li className="borders" key={index}>
+                    <li className="country__borders__liste__item" key={index}>
                       {border}
                     </li>
                   ))}
