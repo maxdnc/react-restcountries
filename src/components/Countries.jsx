@@ -14,8 +14,8 @@ export default function Countries() {
       const res = await fetch(`https://restcountries.com/v3.1/name/${event}`);
       const data = await res.json();
       setCountries(data);
-    } catch (error) {
-      console.log(error);
+    } catch {
+      throw Error("We can't find the country you're looking for.");
     }
   };
 
@@ -24,8 +24,8 @@ export default function Countries() {
       const res = await fetch("https://restcountries.com/v3.1/region/" + event);
       const data = await res.json();
       setCountries(data);
-    } catch (error) {
-      console.log(error);
+    } catch {
+      throw Error("We can't find the page you're looking for.");
     }
   };
 
@@ -34,8 +34,8 @@ export default function Countries() {
       const res = await fetch("https://restcountries.com/v3.1/all");
       const data = await res.json();
       setCountries(data);
-    } catch (error) {
-      console.log(error);
+    } catch {
+      throw Error("We can't find the page you're looking for.");
     }
   };
 
@@ -44,13 +44,15 @@ export default function Countries() {
       try {
         const res = await fetch("https://restcountries.com/v3.1/all");
         const data = await res.json();
-        setCountries(data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
+        return data;
+      } catch {
+        throw Error("We can't find the page you're looking for.");
       }
     };
-    getCountries();
+    getCountries().then((data) => {
+      setIsLoading(false);
+      setCountries(data);
+    });
   }, []);
 
   return (
@@ -66,8 +68,8 @@ export default function Countries() {
           </div>
         )}
         {countries.map((country) => (
-          <Link to={country.name.common} key={country.name.common}>
-            <li className="liste" key={country.name.common}>
+          <li className="liste" key={country.name.common}>
+            <Link to={country.name.common} key={country.name.common}>
               {" "}
               <div className="liste__box">
                 <div className="liste__box__wrapper">
@@ -102,8 +104,8 @@ export default function Countries() {
                   </p>
                 </div>
               </div>
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
     </>

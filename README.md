@@ -1,8 +1,8 @@
 # react-restcountries
 
-# in making loading page
+# in making: error msg
 
-# not finish
+# not finished
 
 live :
 [Live link](https://maxdnc.github.io/react-restcountries/)

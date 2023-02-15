@@ -1,6 +1,7 @@
 import "../styles/countrydetails.scss";
-
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData, useLocation, useNavigate } from "react-router";
+import Loading from "./Loading";
+import { useState } from "react";
 
 export default function CountryDetails() {
   const country = useLoaderData();
@@ -18,6 +19,7 @@ export default function CountryDetails() {
         <i className="fa-solid fa-arrow-left"> </i>
         Back
       </button>
+
       {country.map((item) => (
         <article key={item.population} className="country">
           <div className="country__wrapper-img">
@@ -90,12 +92,9 @@ export const countryDetailsLoader = async ({ params }) => {
   const res = await fetch(
     `https://restcountries.com/v3.1/name/${name}?fullText=true`
   );
-
-  const data = res.json();
-
+  const data = await res.json();
   if (!res.ok) {
-    throw Error("Could not find that country !");
+    throw Error("We can't find the page you're looking for.");
   }
-
   return data;
 };

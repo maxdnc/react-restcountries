@@ -4,6 +4,12 @@ $duration: 0.8s;
 .spinner {
   animation: rotator $duration linear infinite;
 }
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
 
 @keyframes rotator {
   0% {
